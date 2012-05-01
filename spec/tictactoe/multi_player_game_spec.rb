@@ -26,14 +26,10 @@ module TicTacToe
       end
 
       it "should send the players move to the board" do
-        game.move('1')
-        game.board.cells.should == "X,2,3,4,5,6,7,8,9"
+        game.move('a1')
+        game.board.cells[:a1].should == "X"
       end
 
-      it "should print the board" do
-        output.should_receive(:puts).with("X,2,3,4,5,6,7,8,9")
-        game.move('1')
-      end
     end
 
     describe ".end_turn" do
@@ -44,7 +40,7 @@ module TicTacToe
 
      it "should call player switch" do
        game.should_receive(:switch_players)
-       game.move('1')
+       game.end_turn
      end
     end
 
@@ -55,12 +51,12 @@ module TicTacToe
       end
 
       it "should return true if player wins" do
-        game.move('1')
-        game.move('4')
-        game.move('2')
-        game.move('6')
-        game.move('3')
-        game.board.player_win?.should == true
+        game.move('a1')
+        game.move('b1')
+        game.move('a2')
+        game.move('b3')
+        game.move('a3')
+        game.board.game_over?.should == true
       end
     end
 
@@ -70,6 +66,7 @@ module TicTacToe
         it "should make O the current player" do
           game.start('X')
           game.move('1')
+          game.end_turn
           game.current_player.should == 'O'
         end
       end
@@ -86,12 +83,16 @@ module TicTacToe
       it "should not get confused" do
         game.start('X')
         game.move('2')
+        game.end_turn
         game.current_player.should == "O"
         game.move('3')
+        game.end_turn
         game.current_player.should == "X"
         game.move('4')
+        game.end_turn
         game.current_player.should == "O"
         game.move('9')
+        game.end_turn
         game.current_player.should == "X"
       end
     end

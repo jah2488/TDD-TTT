@@ -9,7 +9,7 @@ class Output
   end
 
   def last
-    @messages[@messages.length - 1]
+    @messages.last
   end
 end
 
@@ -60,11 +60,12 @@ end
 When /^I have moves on spaces "([^"]*)"$/ do |moves|
   moves.delete(' ').split(',').each do |space|
     @current_game.move(space)
+    @current_game.end_turn
   end
 end
 
 When /^I ask for help$/ do
-    pending # express the regexp above with the code you wish you had
+  @current_game.help
 end
 
 
@@ -75,7 +76,8 @@ Then /^I should see "([^"]*)"$/ do |message|
 end
 
 Then /^the board should show my move on "([^"]*)"$/ do |space|
-  @output.messages[1][space.to_i - 1].should include(@current_game.other_player)
+  @output.last.should include(@current_game.current_player)
+  @current_game.end_turn
 end
 
 Then /^the board should show my moves on "([^"]*)"$/ do |spaces|

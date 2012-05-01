@@ -17,13 +17,22 @@ module TicTacToe
 
     def move(space)
       @board.move(space, @current_player)
-      @output.puts @board.cells
-      end_turn
+      @output.puts @board.print
     end
 
     def end_turn
-      switch_players
-      start_turn
+      if @board.winner
+        game_over
+      else
+        switch_players
+        start_turn
+      end
+    end
+
+    def game_over
+      @output.puts "Player #{@board.winner} Wins!"
+      @output.puts "Game Over!"
+      @output.puts "Do you want to play again?"
     end
 
     def switch_players
