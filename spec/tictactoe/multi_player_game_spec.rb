@@ -2,19 +2,15 @@ require 'spec_helper'
 
 module TicTacToe
   describe MultiPlayerGame do
-    let(:output) { double('output').as_null_object }
-    let(:game)   { MultiPlayerGame.new(output)     }
+    let(:output) { double('output').as_null_object    }
+    let(:input)  { double('input').as_null_object     }
+    let(:game)   { MultiPlayerGame.new(output, input) }
 
     describe ".start" do
 
-      it "should assign the player their type" do
-        game.start('X')
-        game.player_type.should == 'X'
-      end
-
       it "should prompt the user for their move" do
         output.should_receive(:puts).with("Its Xs Turn")
-        game.start('X')
+        game.start
       end
 
     end
@@ -22,7 +18,7 @@ module TicTacToe
     describe ".move" do
 
       before(:each) do
-        game.start('X')
+        game.start
       end
 
       it "should send the players move to the board" do
@@ -35,7 +31,7 @@ module TicTacToe
     describe ".end_turn" do
 
       before(:each) do
-       game.start('X')
+       game.start
      end
 
      it "should call player switch" do
@@ -47,7 +43,7 @@ module TicTacToe
     describe ".game_over?" do
 
       before(:each) do
-        game.start('X')
+        game.start
       end
 
       it "should return true if player wins" do
@@ -64,7 +60,7 @@ module TicTacToe
 
       context "When X is the Current Player" do
         it "should make O the current player" do
-          game.start('X')
+          game.start
           game.move('1')
           game.end_turn
           game.current_player.should == 'O'
@@ -73,7 +69,7 @@ module TicTacToe
 
       context "When O is the current_player" do
         it "should make X the current_player" do
-          game.start('X')
+          game.start
           game.move('7')
           game.move('1')
           game.current_player.should == 'X'
@@ -81,7 +77,7 @@ module TicTacToe
       end
 
       it "should not get confused" do
-        game.start('X')
+        game.start
         game.move('2')
         game.end_turn
         game.current_player.should == "O"

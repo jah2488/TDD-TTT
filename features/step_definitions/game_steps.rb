@@ -13,8 +13,22 @@ class Output
   end
 end
 
+class Input
+  def messages
+    @messages ||= []
+  end
+
+  def gets
+    ""
+  end
+end
+
 def output
   @output ||= Output.new
+end
+
+def input
+  @input ||= Input.new
 end
 
 ## GIVEN
@@ -23,34 +37,34 @@ Given /^I am not yet playing$/ do
 end
 
 Given /^I am playing a multiplayer game as player "([^"]*)"$/ do |player_type|
-  @current_game = TicTacToe::MultiPlayerGame.new(output)
-  @current_game.start(player_type)
+  @current_game = TicTacToe::MultiPlayerGame.new(output, input)
+  @current_game.start
 end
 
 ## WHEN
 
 When /^I start the game$/ do
-  game = TicTacToe::Game.new(output)
+  game = TicTacToe::Game.new(output, input)
   game.start
 end
 
 When /^I pick player X$/ do
-  game = TicTacToe::SinglePlayerGame.new(output)
-  game.start('X')
+  game = TicTacToe::SinglePlayerGame.new(output, input)
+  game.start
 end
 
 When /^I input "([^"]*)"$/ do |input|
   case input.to_i
-  when 1 then TicTacToe::SinglePlayerGame.new(output)
-  when 2 then TicTacToe::MultiPlayerGame.new(output)
+  when 1 then TicTacToe::SinglePlayerGame.new(output, input)
+  when 2 then TicTacToe::MultiPlayerGame.new(output, input)
   else
     RaiseArguementError
   end
 end
 
 When /^I pick player Y$/ do
-  game = TicTacToe::SinglePlayerGame.new(output)
-  game.start('Y')
+  game = TicTacToe::SinglePlayerGame.new(output, input)
+  game.start
 end
 
 When /^I make a move to space "([^"]*)" on the board$/ do |space|

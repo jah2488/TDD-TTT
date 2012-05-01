@@ -1,13 +1,11 @@
 module TicTacToe
   class MultiPlayerGame < Game
 
-    def initialize(output)
+    def initialize(output, input)
       super
     end
 
-
-    def start(player_type)
-      @player_type = player_type
+    def start
       @output.puts "Its Xs Turn"
     end
 
@@ -37,6 +35,11 @@ module TicTacToe
 
     def switch_players
       @current_player, @other_player = @other_player, @current_player
+    end
+
+    def help
+      @output.puts "Pick a number coorisponding with an open tile on the board, then hit enter!"
+      @output.puts "For Example, typing 'a1' will place your move in the first cell (top left)"
     end
 
   end

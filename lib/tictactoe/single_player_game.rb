@@ -1,12 +1,12 @@
 module TicTacToe
   class SinglePlayerGame < Game
 
-   def initialize(output)
+   def initialize(output, input)
      super
      @output.puts "Would you like to be player (X) or player (O)?"
    end
 
-   def start(player_type)
+   def start
      @output.puts "Its Xs Turn"
    end
 

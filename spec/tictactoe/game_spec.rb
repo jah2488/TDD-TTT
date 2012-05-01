@@ -6,7 +6,8 @@ module TicTacToe
     describe "#start" do
 
       let(:output) { double('output').as_null_object }
-      let(:game)   { Game.new(output) }
+      let(:input)  { double('input').as_null_object  }
+      let(:game)   { Game.new(output, input)         }
 
       it "shows the menu" do
         output.should_receive(:puts).with('Tic Tac Toe')
