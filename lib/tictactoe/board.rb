@@ -2,9 +2,9 @@ module TicTacToe
   class Board
 
     def initialize
-      @cells = { :a1 => "", :a2 => "", :a3 => "",
-                 :b1 => "", :b2 => "", :b3 => "",
-                 :c1 => "", :c2 => "", :c3 => "" }
+      @cells = { :a1 => " ", :a2 => " ", :a3 => " ",
+                 :b1 => " ", :b2 => " ", :b3 => " ",
+                 :c1 => " ", :c2 => " ", :c3 => " " }
     end
 
     def cells
@@ -14,9 +14,9 @@ module TicTacToe
     def print
       board = <<-BOARD
       A - #{@cells[:a1]} | #{@cells[:a2]} | #{@cells[:a3]}  
-        ---------------
+        ------------
       B - #{@cells[:b1]} | #{@cells[:b2]} | #{@cells[:b3]}  
-        ---------------
+        ------------
       C - #{@cells[:c1]} | #{@cells[:c2]} | #{@cells[:c3]}  
           1 | 2 | 3 \n
       BOARD
@@ -29,7 +29,7 @@ module TicTacToe
     def open_spaces
       spaces = 0
       @cells.values.each do |cell|
-        spaces += 1 if cell == ""
+        spaces += 1 if cell == " "
       end
       return spaces
     end
@@ -58,6 +58,7 @@ module TicTacToe
       end
       return response
     end
+
     def winning_moves
       [
         [@cells[:a1], @cells[:a2], @cells[:a3]],

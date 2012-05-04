@@ -7,20 +7,21 @@ module TicTacToe
       Board.new
     end
 
+    let(:blank_board) do
+      { :a1 => " ", :a2 => " ", :a3 => " ",
+        :b1 => " ", :b2 => " ", :b3 => " ",
+        :c1 => " ", :c2 => " ", :c3 => " " }
+    end
+
     describe 'new' do
       it "should start a new board" do
-        board.cells.should == { :a1 => "", :a2 => "", :a3 => "",
-                                :b1 => "", :b2 => "", :b3 => "",
-                                :c1 => "", :c2 => "", :c3 => "" }
+        board.cells.should == blank_board
       end
     end
 
     describe "cells" do
       it "should return the board's cells" do
-        board.cells.should == { :a1 => "", :a2 => "", :a3 => "",
-                                :b1 => "", :b2 => "", :b3 => "",
-                                :c1 => "", :c2 => "", :c3 => "" }
-
+        board.cells.should == blank_board
       end
     end
 
@@ -28,9 +29,9 @@ module TicTacToe
       it "should format the board for the console" do
         output = <<-BOARD
       A -  |  |   
-        ---------------
+        ------------
       B -  |  |   
-        ---------------
+        ------------
       C -  |  |   
           1 | 2 | 3 \n
       BOARD
@@ -41,9 +42,8 @@ module TicTacToe
     describe "move" do
       it "should set moves on board to player type" do
         board.move('a1','X')
-        board.cells.should == { :a1 => "X", :a2 => "", :a3 => "",
-                                :b1 => "", :b2 => "", :b3 => "",
-                                :c1 => "", :c2 => "", :c3 => "" }
+        blank_board[:a1] = 'X'
+        board.cells.should == blank_board
       end
     end
 

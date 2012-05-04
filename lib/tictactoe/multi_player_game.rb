@@ -6,16 +6,38 @@ module TicTacToe
     end
 
     def start
-      @output.puts "Its Xs Turn"
+      until @board.game_over?
+        start_turn
+        space = get_input
+        move(space)
+        end_turn
+      end
     end
 
     def start_turn
+      draw
       @output.puts "Its #{@current_player}s Turn"
+    end
+
+    def get_input
+      @output.print "-> "
+      move = @input.gets.chomp
+      if move =~ /[a-c][1-9]/
+        return move
+      else
+        get_input
+      end
+    end
+
+    def draw
+      system('clear')
+      @output.puts "Moves Available: #{ @board.open_spaces}"
+      @output.puts @board.print
     end
 
     def move(space)
       @board.move(space, @current_player)
-      @output.puts @board.print
+      draw
     end
 
     def end_turn
@@ -31,6 +53,15 @@ module TicTacToe
       @output.puts "Player #{@board.winner} Wins!"
       @output.puts "Game Over!"
       @output.puts "Do you want to play again?"
+
+      response = @input.gets.chomp
+
+      if response =~ /[yes]/
+        Game.new(@output, @input)
+      else
+        @output.puts "Goodbye!"
+        exit(0)
+      end
     end
 
     def switch_players
