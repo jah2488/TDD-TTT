@@ -30,7 +30,7 @@ module TicTacToe
     end
 
     def draw
-      system('clear')
+      #system('clear')
       @output.puts "Moves Available: #{ @board.open_spaces}"
       @output.puts @board.print
     end
@@ -60,7 +60,7 @@ module TicTacToe
         Game.new(@output, @input)
       else
         @output.puts "Goodbye!"
-        exit(0)
+        #exit(0)
       end
     end
 

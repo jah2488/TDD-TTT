@@ -1,14 +1,11 @@
 module TicTacToe
   class Board
+    attr_reader :cells
 
-    def initialize
-      @cells = { :a1 => " ", :a2 => " ", :a3 => " ",
+    def initialize(cells  = { :a1 => " ", :a2 => " ", :a3 => " ",
                  :b1 => " ", :b2 => " ", :b3 => " ",
-                 :c1 => " ", :c2 => " ", :c3 => " " }
-    end
-
-    def cells
-      @cells
+                 :c1 => " ", :c2 => " ", :c3 => " " })
+      @cells = cells
     end
 
     def print
@@ -32,6 +29,10 @@ module TicTacToe
         spaces += 1 if cell == " "
       end
       return spaces
+    end
+
+    def open_cells
+      @cells.reject { |key, value| value != " " }.keys
     end
 
     def game_over?

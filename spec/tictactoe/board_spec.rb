@@ -52,6 +52,18 @@ module TicTacToe
         board.open_spaces.should == 9
       end
     end
+
+    describe "open_cells" do
+      it "should return all cells that are blank" do
+        board.open_cells.should == board.cells.keys
+      end
+
+      it "should return only cells that are not bank" do
+        board.move('a1','X')
+        board.open_cells.should_not include(:a1)
+      end
+    end
+
     describe "game_over?" do
 
       it "should return true if player X wins" do
