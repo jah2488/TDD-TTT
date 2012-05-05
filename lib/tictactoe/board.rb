@@ -23,7 +23,7 @@ module TicTacToe
       @cells[space.to_sym] = type
     end
 
-    def open_spaces
+    def spaces_available
       spaces = 0
       @cells.values.each do |cell|
         spaces += 1 if cell == " "
@@ -37,7 +37,7 @@ module TicTacToe
 
     def game_over?
       return true if winner
-      return true if open_spaces < 1
+      return true if spaces_available < 1
       false
     end
 

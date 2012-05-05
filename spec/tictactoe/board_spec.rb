@@ -28,11 +28,11 @@ module TicTacToe
     describe "print" do
       it "should format the board for the console" do
         output = <<-BOARD
-      A -  |  |   
+      A -   |   |    
         ------------
-      B -  |  |   
+      B -   |   |    
         ------------
-      C -  |  |   
+      C -   |   |    
           1 | 2 | 3 \n
       BOARD
         board.print.should == output
@@ -47,12 +47,23 @@ module TicTacToe
       end
     end
 
-    describe "open_spaces" do
-      it "should return 9 if no moves are made" do
-        board.open_spaces.should == 9
+    describe "open_cells" do
+      it "should return an array of open spaces" do
+        board.open_cells.should == [:a1, :a2, :a3, :b1, :b2, :b3, :c1, :c2, :c3]
       end
     end
 
+    describe "spaces_available" do
+      it "should return 9 if no moves are made" do
+        board.spaces_available.should == 9
+      end
+      it "should return 8 if 1 move is taken" do
+        board.move('a1', 'X')
+        board.spaces_available.should == 8
+      end
+    end
+
+<<<<<<< HEAD
     describe "open_cells" do
       it "should return all cells that are blank" do
         board.open_cells.should == board.cells.keys
@@ -64,6 +75,8 @@ module TicTacToe
       end
     end
 
+=======
+>>>>>>> c6b9140e2320782b228503bdbc16582d592cb06c
     describe "game_over?" do
 
       it "should return true if player X wins" do

@@ -21,11 +21,9 @@ module TicTacToe
 
     def get_input
       @output.print "-> "
-      move = @input.gets.chomp
-      if move =~ /[a-c][1-9]/
-        return move
-      else
-        get_input
+      move = ""
+      until @board.open_cells.include?(move)
+        move = @input.gets.chomp
       end
     end
 
