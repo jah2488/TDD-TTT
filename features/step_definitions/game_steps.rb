@@ -42,19 +42,16 @@ end
 
 Given /^I am playing a multiplayer game as player "([^"]*)"$/ do |player_type|
   @current_game = TicTacToe::MultiPlayerGame.new(output, input)
-  @current_game.start
 end
 
 ## WHEN
 
 When /^I start the game$/ do
   game = TicTacToe::Game.new(output, input)
-  game.start
 end
 
 When /^I pick player X$/ do
   game = TicTacToe::SinglePlayerGame.new(output, input)
-  game.start
 end
 
 When /^I input "([^"]*)"$/ do |input|
@@ -68,7 +65,6 @@ end
 
 When /^I pick player Y$/ do
   game = TicTacToe::SinglePlayerGame.new(output, input)
-  game.start
 end
 
 When /^I make a move to space "([^"]*)" on the board$/ do |space|

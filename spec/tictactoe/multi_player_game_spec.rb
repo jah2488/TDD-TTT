@@ -10,7 +10,7 @@ module TicTacToe
     describe ".get_input" do
 
       it "should only accept available board moves" do
-        output.should_receive(:puts).with("move invalid. try again")
+        output.should_receive(:print).with("-> ")
         game.get_input
       end
     end

@@ -21,16 +21,14 @@ module TicTacToe
 
     def get_input
       @output.print "-> "
-      move = @input.gets.chomp
-      if move =~ /[a-c][1-9]/
-        return move
-      else
-        get_input
+      move = ""
+      until @board.open_cells.include?(move)
+        move = @input.gets.chomp
       end
     end
 
     def draw
-      system('clear')
+      #system('clear')
       @output.puts "Moves Available: #{ @board.open_spaces}"
       @output.puts @board.print
     end
@@ -60,7 +58,7 @@ module TicTacToe
         Game.new(@output, @input)
       else
         @output.puts "Goodbye!"
-        exit(0)
+        #exit(0)
       end
     end
 
