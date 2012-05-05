@@ -8,6 +8,10 @@ class Output
     messages << message
   end
 
+  def print(message)
+    messages << message
+  end
+
   def last
     @messages.last
   end

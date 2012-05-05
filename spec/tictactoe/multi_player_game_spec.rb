@@ -6,20 +6,15 @@ module TicTacToe
     let(:input)  { double('input').as_null_object     }
     let(:game)   { MultiPlayerGame.new(output, input) }
 
-    describe ".start" do
 
-      it "should prompt the user for their move" do
-        output.should_receive(:puts).with("Its Xs Turn")
-        game.start
+    describe ".get_input" do
+
+      it "should only accept available board moves" do
+        output.should_receive(:puts).with("move invalid. try again")
+        game.get_input
       end
-
     end
-
     describe ".move" do
-
-      before(:each) do
-        game.start
-      end
 
       it "should send the players move to the board" do
         game.move('a1')
@@ -30,10 +25,6 @@ module TicTacToe
 
     describe ".end_turn" do
 
-      before(:each) do
-       game.start
-     end
-
      it "should call player switch" do
        game.should_receive(:switch_players)
        game.end_turn
@@ -41,10 +32,6 @@ module TicTacToe
     end
 
     describe ".game_over?" do
-
-      before(:each) do
-        game.start
-      end
 
       it "should return true if player wins" do
         game.move('a1')
@@ -60,7 +47,6 @@ module TicTacToe
 
       context "When X is the Current Player" do
         it "should make O the current player" do
-          game.start
           game.move('1')
           game.end_turn
           game.current_player.should == 'O'
@@ -69,7 +55,6 @@ module TicTacToe
 
       context "When O is the current_player" do
         it "should make X the current_player" do
-          game.start
           game.move('7')
           game.move('1')
           game.current_player.should == 'X'
@@ -77,7 +62,6 @@ module TicTacToe
       end
 
       it "should not get confused" do
-        game.start
         game.move('2')
         game.end_turn
         game.current_player.should == "O"
