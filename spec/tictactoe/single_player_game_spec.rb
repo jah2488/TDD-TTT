@@ -10,7 +10,6 @@ module TicTacToe
 
       it "should prompt the user for their move" do
         output.should_receive(:puts).with("Its Xs Turn")
-        game.start
       end
 
     end

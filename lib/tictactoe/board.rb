@@ -8,6 +8,10 @@ module TicTacToe
       @cells = cells
     end
 
+    def dup
+      Board.new(@cells.dup)
+    end
+
     def print
       board = <<-BOARD
       A - #{@cells[:a1]} | #{@cells[:a2]} | #{@cells[:a3]}  
@@ -33,6 +37,10 @@ module TicTacToe
 
     def open_cells
       @cells.reject { |key, value| value != " " }.keys
+    end
+
+    def stalemate?
+      return true if spaces_available < 1 && !winner
     end
 
     def game_over?

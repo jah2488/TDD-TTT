@@ -11,7 +11,6 @@ module TicTacToe
 
       it "should only accept available board moves" do
         output.should_receive(:print).with("-> ")
-        game.get_input
       end
     end
     describe ".move" do

@@ -3,7 +3,7 @@ module TicTacToe
     attr_accessor :type
 
     BEST_RANK = 1000
-    MAX_DEPTH = 10
+    MAX_DEPTH = 10000
 
     def initialize(type)
       @type = type
@@ -52,25 +52,6 @@ module TicTacToe
         current_board.move(cell, piece)
         rank = -rank_move(current_board, opponent(piece), depth + 1)
         max_rank = [max_rank, rank].max
-      end
-    end
-
-    def negamax(board, player, depth)
-      if board.game_over?
-        return winner(board, player)
-      else
-        best_rank = -999
-
-        board.open_cells.each do |cell|
-          current_board = Board.new(Marshal.load(Marshal.dump(board.cells)) )
-          current_board.move(cell, player)
-          rank = -negamax(current_board, opponent(player), depth+1)
-          if rank > best_rank
-            best_rank = rank
-            @best_move = cell if depth == 1
-          end
-        end
-        return best_rank
       end
     end
 

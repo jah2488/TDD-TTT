@@ -19,6 +19,12 @@ module TicTacToe
       end
     end
 
+    describe 'dup' do
+      it "should create a copy of all board cells and return self" do
+        board.dup.cells.should_not be board.cells
+      end
+    end
+
     describe "cells" do
       it "should return the board's cells" do
         board.cells.should == blank_board
@@ -63,7 +69,6 @@ module TicTacToe
       end
     end
 
-<<<<<<< HEAD
     describe "open_cells" do
       it "should return all cells that are blank" do
         board.open_cells.should == board.cells.keys
@@ -75,8 +80,6 @@ module TicTacToe
       end
     end
 
-=======
->>>>>>> c6b9140e2320782b228503bdbc16582d592cb06c
     describe "game_over?" do
 
       it "should return true if player X wins" do

@@ -11,6 +11,11 @@ module TicTacToe
 
     describe ".make_move" do
 
+      it "should pick best moves" do
+        board.move('a1', 'O')
+        board.move('c3', 'O')
+        cpu.make_move(board).should == :b2
+      end
       it "should pick winning moves" do
         board.move('a3', 'O')
         board.move('a2', 'O')
@@ -29,10 +34,54 @@ module TicTacToe
       it "should pick winning moves" do
         board.move('c1', 'O')
         board.move('b2', 'O')
+        cpu.make_move(board).should == :a3
+      end
+      it "should pick winning moves" do
+        board.move('a1', 'O')
+        board.move('b2', 'O')
         cpu.make_move(board).should == :c3
       end
-
-    end
+      it "should pick winning moves" do
+        board.move('c3', 'O')
+        board.move('b3', 'O')
+        cpu.make_move(board).should == :a3
+      end
+      it "should pick best moves" do
+        board.move('a1', 'X')
+        board.move('c3', 'X')
+        cpu.make_move(board).should == :b2
+      end
+      it "should pick blocking moves" do
+        board.move('a3', 'X')
+        board.move('a2', 'X')
+        cpu.make_move(board).should == :a1
+      end
+      it "should pick blocking moves" do
+        board.move('a1', 'X')
+        board.move('a2', 'X')
+        cpu.make_move(board).should == :a3
+      end
+      it "should pick blocking moves" do
+        board.move('b2', 'X')
+        board.move('b3', 'X')
+        cpu.make_move(board).should == :b1
+      end
+      it "should pick blocking moves" do
+        board.move('c1', 'X')
+        board.move('b2', 'X')
+        cpu.make_move(board).should == :a3
+      end
+      it "should pick blocking moves" do
+        board.move('a1', 'X')
+        board.move('b2', 'X')
+        cpu.make_move(board).should == :c3
+      end
+      it "should pick blocking moves" do
+        board.move('c3', 'X')
+        board.move('b3', 'X')
+        cpu.make_move(board).should == :a3
+      end
+   end
 
     describe ".opponent" do
 

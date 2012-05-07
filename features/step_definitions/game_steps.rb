@@ -48,14 +48,16 @@ end
 
 When /^I start the game$/ do
   game = TicTacToe::Game.new(output, input)
+  game.stub(:input).and_return('1')
+  game.setup
 end
 
 When /^I pick player X$/ do
   game = TicTacToe::SinglePlayerGame.new(output, input)
 end
 
-When /^I input "([^"]*)"$/ do |input|
-  case input.to_i
+When /^I input "([^"]*)"$/ do |game_type|
+  case game_type.to_i
   when 1 then TicTacToe::SinglePlayerGame.new(output, input)
   when 2 then TicTacToe::MultiPlayerGame.new(output, input)
   else
