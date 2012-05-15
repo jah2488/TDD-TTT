@@ -21,11 +21,11 @@ module TicTacToe
     def setup
       @output.puts "Tic Tac Toe"
       @output.puts "How many players are there? (1) or (2)"
-      response = ""
+      response = input
       until response == "1" || response == "2"
-        response =
-      game = response == "1" ? SinglePlayerGame.new(@output, @input) : MultiPlayerGame.new(@output, @input)
+        response = input
       end
+      game = response == "1" ? SinglePlayerGame.new(@output, @input) : MultiPlayerGame.new(@output, @input)
       game.start
     end
 
@@ -38,13 +38,7 @@ module TicTacToe
       end
     end
 
-    def get_computer_type
-      move = ""
-      until move == "X" || move == "O"
-        move = input
-      end
-      return  move == 'X' ? 'O' : 'X'
-    end
+
 
     def start_turn
       draw

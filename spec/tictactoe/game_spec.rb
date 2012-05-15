@@ -12,9 +12,9 @@ module TicTacToe
       it "Should ask the user their desired type" do
         game.stub(:input).and_return('X')
       end
+
       it "should return the opposite type for the computer" do
         game.stub(:input).and_return('X')
-        binding.pry
         game.get_computer_type.should == 'O'
       end
     end

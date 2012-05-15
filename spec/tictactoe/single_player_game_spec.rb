@@ -6,14 +6,5 @@ module TicTacToe
     let(:input)  { double('input').as_null_object     }
     let(:game)   { SinglePlayerGame.new(output, input) }
 
-    describe ".start" do
-
-      it "should prompt the user for their move" do
-        output.should_receive(:puts).with("Its Xs Turn")
-      end
-
-    end
-
-
   end
 end

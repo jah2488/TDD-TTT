@@ -23,7 +23,7 @@ class Input
   end
 
   def gets
-    ""
+    @messages.last if @messages
   end
 end
 
@@ -48,8 +48,7 @@ end
 
 When /^I start the game$/ do
   game = TicTacToe::Game.new(output, input)
-  game.stub(:input).and_return('1')
-  game.setup
+  @input.messages << "1"
 end
 
 When /^I pick player X$/ do

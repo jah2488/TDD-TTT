@@ -6,13 +6,6 @@ module TicTacToe
     let(:input)  { double('input').as_null_object     }
     let(:game)   { MultiPlayerGame.new(output, input) }
 
-
-    describe ".get_input" do
-
-      it "should only accept available board moves" do
-        output.should_receive(:print).with("-> ")
-      end
-    end
     describe ".move" do
 
       it "should send the players move to the board" do
