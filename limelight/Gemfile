@@ -1,0 +1,4 @@
+source :rubygems
+
+gem "limelight"
+gem "rspec", "~> 1.2"
