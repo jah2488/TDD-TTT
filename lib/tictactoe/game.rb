@@ -1,11 +1,9 @@
 module TicTacToe
-  require 'rubygems'
-  require 'pry'
   class Game
 
     attr_accessor :player_type, :current_player, :other_player, :board
 
-    def initialize(output, input)
+    def initialize(output = STDOUT, input = STDIN)
       @output = output
       @input  = input
       @computer_type = ""

@@ -3,8 +3,9 @@
 # You may define serveral hooks and initialization steps here.
 
 module Production
+  require File.expand_path(File.dirname(__FILE__) + "/../lib/tictactoe")
 
-#  # Define this method if you want the production name to be different from the default, directory name.
+## Define this method if you want the production name to be different from the default, directory name.
 def name
   return "Tic Tac Toe"
 end
@@ -19,8 +20,10 @@ end
 #
 #  # Hook #1.  Called when the production is newly created, before any loading has been done.
 #  # This is a good place to require needed files and instantiate objects in the business layer.
-#  def production_opening
-#  end
+def production_opening
+  require 'rubygems'
+  require 'pry'
+end
 #
 #  # Hook #2.  Called after internal gems have been loaded and stages have been instantiated, yet before
 #  # any scenes have been opened.

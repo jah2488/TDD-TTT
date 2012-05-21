@@ -1,12 +1,22 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    coderay (1.0.6)
     limelight (0.5.5-java)
+    method_source (0.7.1)
+    pry (0.9.9.6-java)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7.1)
+      slop (>= 2.4.4, < 3)
+      spoon (~> 0.0)
     rspec (1.3.2)
+    slop (2.4.4)
+    spoon (0.0.1)
 
 PLATFORMS
   java
 
 DEPENDENCIES
   limelight
+  pry
   rspec (~> 1.2)

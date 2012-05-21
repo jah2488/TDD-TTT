@@ -1,7 +1,7 @@
 module TicTacToe
   class SinglePlayerGame < Game
 
-   def initialize(output, input)
+   def initialize(output = STDOUT, input = STDIN)
      super
      @output.puts "Would you like to be player (X) or player (O)?"
      @computer_type = get_computer_type

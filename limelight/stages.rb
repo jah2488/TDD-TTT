@@ -12,6 +12,6 @@
 stage "default" do
   default_scene "default_scene"
   title "Tic Tac Toe"
-  location [200, 25]
+  location [450, 35]
   size [800, 800]
 end

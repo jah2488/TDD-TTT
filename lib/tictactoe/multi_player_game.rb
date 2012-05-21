@@ -1,6 +1,6 @@
 module TicTacToe
   class MultiPlayerGame < Game
-    def initialize(output, input)
+    def initialize(output = STDOUT, input = STDIN)
       super
     end
   end
