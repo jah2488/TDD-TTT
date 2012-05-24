@@ -23,8 +23,20 @@ module TicTacToe
       until response == "1" || response == "2"
         response = input
       end
-      game = response == "1" ? SinglePlayerGame.new(@output, @input) : MultiPlayerGame.new(@output, @input)
-      game.start
+      if response == "1"
+        @computer_type = get_computer_type
+        @computer = ComputerPlayer.new(@computer_type)
+      end
+      start
+    end
+
+    def get_computer_type
+      move = input.upcase
+      until move == "X" || move  == "O"
+        @output.puts "Invalid player type"
+        move = input.upcase
+      end
+      return  move == 'X' ? 'O' : 'X'
     end
 
     def start
@@ -35,8 +47,6 @@ module TicTacToe
         end_turn
       end
     end
-
-
 
     def start_turn
       draw
@@ -112,7 +122,6 @@ module TicTacToe
       @output.puts "Pick a number coorisponding with an open tile on the board, then hit enter!"
       @output.puts "For Example, typing 'a1' will place your move in the first cell (top left)"
     end
-
 
   end
 end

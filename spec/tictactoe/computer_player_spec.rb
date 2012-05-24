@@ -23,12 +23,7 @@ module TicTacToe
 
     describe ".make_move" do
 
-      it "should pick best left to right" do
-        board.move('a1', 'O')
-        board.move('b2', 'O')
-        cpu.make_move(board).should == :c3
-      end
-      it "should pick winning moves horizontally" do
+     it "should pick winning moves horizontally" do
         board.move('a3', 'O')
         board.move('a2', 'O')
         cpu.make_move(board).should == :a1
@@ -38,33 +33,7 @@ module TicTacToe
         board.move('a2', 'O')
         cpu.make_move(board).should == :a3
       end
-      it "should pick winning moves vertically" do
-        board.move('b2', 'O')
-        board.move('b3', 'O')
-        binding.pry
-        cpu.make_move(board).should == :b1
-      end
-      it "should pick winning moves right to left" do
-        board.move('c1', 'O')
-        board.move('b2', 'O')
-        cpu.make_move(board).should == :a3
-      end
-      it "should pick winning moves left to right" do
-        board.move('a1', 'O')
-        board.move('b2', 'O')
-        cpu.make_move(board).should == :c3
-      end
-      it "should pick winning moves vertically" do
-        board.move('c3', 'O')
-        board.move('b3', 'O')
-        cpu.make_move(board).should == :a3
-      end
-      it "should pick best moves left to right" do
-        board.move('a1', 'X')
-        board.move('c3', 'X')
-        cpu.make_move(board).should == :b2
-      end
-      it "should pick blocking moves horizontally" do
+     it "should pick blocking moves horizontally" do
         board.move('a3', 'X')
         board.move('a2', 'X')
         cpu.make_move(board).should == :a1
@@ -74,26 +43,7 @@ module TicTacToe
         board.move('a2', 'X')
         cpu.make_move(board).should == :a3
       end
-      it "should pick blocking moves vertically" do
-        board.move('b2', 'X')
-        board.move('b3', 'X')
-        cpu.make_move(board).should == :b1
-      end
-      it "should pick blocking moves right to left" do
-        board.move('c1', 'X')
-        board.move('b2', 'X')
-        cpu.make_move(board).should == :a3
-      end
-      it "should pick blocking moves left to right" do
-        board.move('a1', 'X')
-        board.move('b2', 'X')
-        cpu.make_move(board).should == :c3
-      end
-      it "should pick blocking moves horizontally" do
-        board.move('c3', 'X')
-        board.move('b3', 'X')
-        cpu.make_move(board).should == :a3
-      end
+
    end
 
     describe ".opponent" do
