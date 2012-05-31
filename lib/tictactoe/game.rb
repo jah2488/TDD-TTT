@@ -1,11 +1,10 @@
 module TicTacToe
   class Game
 
-    attr_accessor :player_type, :current_player, :other_player, :board
+    attr_accessor :computer, :player_type, :current_player, :other_player, :board
 
-    def initialize(output = STDOUT, input = STDIN)
-      @output = output
-      @input  = input
+    def initialize
+      @io = InputOutput.new
       @computer_type = ""
       @current_player = "X"
       @other_player = "O"
@@ -13,12 +12,12 @@ module TicTacToe
     end
 
     def input
-      @input.gets.chomp
+      @io.input
     end
 
     def setup
-      @output.puts "Tic Tac Toe"
-      @output.puts "How many players are there? (1) or (2)"
+      @io.output "Tic Tac Toe"
+      @io.output "How many players are there? (1) or (2)"
       response = input
       until response == "1" || response == "2"
         response = input
@@ -31,9 +30,10 @@ module TicTacToe
     end
 
     def get_computer_type
+      @io.output "Pick your player type. (X) or (O)"
       move = input.upcase
       until move == "X" || move  == "O"
-        @output.puts "Invalid player type"
+        @io.output "Invalid player type"
         move = input.upcase
       end
       return  move == 'X' ? 'O' : 'X'
@@ -50,14 +50,15 @@ module TicTacToe
 
     def start_turn
       draw
-      @output.puts "Its #{@current_player}s Turn"
+      @io.output "Its #{@current_player}s Turn"
     end
 
     def get_move
       move = ""
       until @board.open_cells.include?(move)
-        @output.print "-> "
+        @io.outprint "-> "
         move = get_input
+        draw
       end
       return move
     end
@@ -69,47 +70,61 @@ module TicTacToe
 
     def draw
       system('clear')
-      @output.puts "Moves Available: #{ @board.spaces_available}"
-      @output.puts ""
-      @output.puts @board.print
+      @io.output "Moves Available: #{ @board.spaces_available} \n"
+      @io.output  @board.print
     end
 
     def move(space)
       @board.move(space, @current_player)
-      draw
     end
 
     def end_turn
-      if @board.winner
+      draw
+      check_game_state
+      switch_players
+      start_turn
+    end
+
+    def check_game_state
+      if winner
         game_over
-      elsif @board.stalemate?
+      elsif stalemate?
         stalemate
-      else
-        switch_players
-        start_turn
       end
     end
 
+    def winner
+      @board.winner
+    end
+
+    def moves_left
+      @board.spaces_available
+    end
+
+    def stalemate?
+      @board.stalemate?
+    end
+
     def stalemate
-      @output.puts "STALEMATE!"
+      @io.output "STALEMATE!"
       play_again
     end
 
     def game_over
-      @output.puts "Player #{@board.winner} Wins!"
-      @output.puts "Game Over!"
+      @io.output "Player #{@board.winner} Wins!"
+      @io.output "Game Over!"
       play_again
     end
 
     def play_again
-      @output.puts "Do you want to play again?"
+      @io.output "Do you want to play again?"
 
       if input =~ /yes/
         system('clear')
         g = Game.new(@output, @input)
         g.setup
       else
-        @output.puts "Goodbye!"
+        @io.output "Goodbye!"
         exit(0)
       end
     end
@@ -119,8 +134,8 @@ module TicTacToe
     end
 
     def help
-      @output.puts "Pick a number coorisponding with an open tile on the board, then hit enter!"
-      @output.puts "For Example, typing 'a1' will place your move in the first cell (top left)"
+      @io.output "Pick a number coorisponding with an open tile on the board, then hit enter!"
+      @io.output "For Example, typing 'a1' will place your move in the first cell (top left)"
     end
 
   end

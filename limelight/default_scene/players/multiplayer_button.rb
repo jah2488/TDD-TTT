@@ -1,5 +1,5 @@
 module MultiplayerButton
   def mouse_clicked(e)
-    puts "Game.new()"
+    scene.load('board_scene').start_multiplayer_game
   end
 end

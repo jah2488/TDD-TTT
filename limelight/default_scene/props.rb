@@ -5,8 +5,8 @@
 title_text  :text => "Tic Tac Toe!"
 
 button_box do
-  option :players => "singleplayer_button", :text => "Single Player Game"
-  option :players => "multiplayer_button",  :text => "Multiplayer Game"
+  option :id => "1p", :players => "singleplayer_button", :text => "Single Player Game"
+  option :id => "2p", :players => "multiplayer_button",  :text => "Multiplayer Game"
   option :players => "help_button",         :text => "Help"
   option :players => "exit_button",         :text => "Exit"
 end

@@ -43,6 +43,20 @@ describe "Default Scene" do
   end
 
   context "Players" do
+    let(:singleplayer_button) { scene.children[1].children[0] }
+    let(:multiplayer_button) { scene.children[1].children[1] }
+    context "SingleplayerButton" do
+      it "should load the board scene" do
+        scene.should_receive(:load).with("board_scene")
+        lambda { singleplayer_button.mouse_clicked(nil) }.should raise_error
+      end
+    end
+    context "MultiplayerButton" do
+      it "should load the board scene" do
+        scene.should_receive(:load).with("board_scene")
+        lambda { multiplayer_button.mouse_clicked(nil) }.should raise_error
+      end
+    end
   end
 
 end
